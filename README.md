@@ -36,9 +36,10 @@ Config lives in `config.yaml` - edit salary, balances, expected return, inflatio
 
 A planning input, not a prediction: one honest number for what the brokerage portfolio earns per year, after fund costs, before inflation (5-7% for an equity-heavy mix). It lives in `config.yaml` as `expected_return_annual`, adjustable in the sidebar, and bounded by the bull/bear scenarios instead of decomposed per holding. Returns decompose as:
 
-$$
+```math
 \text{past return} = \text{dividend yield} + \text{earnings growth} \pm \text{multiple change}
-$$
+```
+
 where:
 - **past return** is the total return you actually saw in your brokerage account last year (or over the last 10 years, or since inception).
 - **dividend yield** is the cash you actually received, which you can reinvest or spend.
