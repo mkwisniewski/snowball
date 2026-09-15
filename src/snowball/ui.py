@@ -77,5 +77,5 @@ def show_chart(fig) -> None:
 def footer() -> None:
     """Render the bottom-page copyright notice."""
     st.caption(
-        "© 2026 Mariusz Wisniewski - Snowball · [MIT license](https://github.com/mwisniewski/snowball)"
+        "© 2026 Mariusz Wisniewski - Snowball · [MIT license](https://github.com/mkwisniewski/snowball)"
     )
