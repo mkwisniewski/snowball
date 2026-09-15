@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Generated reports (Plotly HTML, CSV, XLSX)
+/reports/
+
+# Personal finances - never publish. Use config.example.yaml as template.
+config.yaml
+
+# MacOS
+.DS_Store

@@ -1,0 +1,62 @@
+# EXAMPLE config - safe to publish. Copy to `config.yaml` and fill in your numbers:
+#   cp config.example.yaml config.yaml
+# `config.yaml` is git-ignored so your personal finances never leave your machine.
+# All amounts in CHF unless noted.
+
+person:
+  age_now: 30
+  retirement_age: 65
+  net_salary_monthly: 0.0
+  rent_monthly: 0.0
+  groceries_monthly: 0.0
+  transport_monthly: 0.0
+  other_monthly: 0.0
+  # Direct override (takes precedence over salary-minus-expenses):
+  # Set to null to compute from salary and expenses with investment_share.
+  monthly_investment_override: 0.0
+  monthly_savings_override: 0.0
+  investment_share: 1.0  # share of net savings -> taxable investments
+
+starting_balances:
+  brokerage_taxable: 0.0
+  cash_buffer: 0.0  # emergency fund, NOT invested
+  pillar2: 0.0  # per pension statement (Vorsorgeausweis)
+  pillar3a: 0.0
+
+assumptions:
+  years: 30  # projection window (e.g. 38 = age 27 → 65)
+  inflation_annual: 0.01  # SNB price-stability range 0-2%
+  # What the brokerage portfolio earns per year, AFTER fund costs, BEFORE
+  # inflation. One honest number (5-7% for an equity-heavy mix) beats a
+  # spreadsheet of false precision. Bound it with the bull/bear scenarios below.
+  expected_return_annual: 0.06
+  savings_interest_annual: 0.0
+  # Total monthly inflow, you + employer. Best source: yearly "savings credit
+  # notices" on the pension statement ÷ 12 (authoritative; payslip split only
+  # matters for net salary, not for the projection).
+  pillar2_monthly_contrib: 0.0
+  # Blended rate: 1.25% BVG-minimum floor on guaranteed buckets + variable
+  # surplus participation in good years.
+  pillar2_interest_annual: 0.014
+  pillar3a_annual_max: 7258.0
+  pillar3a_fee_annual: 0.0039
+  pillar3a_equity_return_nominal: 0.065
+  volatility_annual: 0.16  # for Monte Carlo (60/40 ≈ 12%, 100% equity ≈ 16%)
+  foreign_share_brokerage: 0.85  # share of brokerage exposed to USD/foreign FX vs CHF
+  fx_shock_total: 0.0  # e.g. -0.15 = dollar block falls 15% over horizon
+  # Yearly raise applied to monthly brokerage, cash and pillar 2 flows.
+  # Pillar 3a is legally capped, so it stays flat.
+  salary_growth_annual: 0.01
+
+scenarios:
+  bear:
+    investment_return_annual: 0.03
+  base:
+    investment_return_annual: null  # = portfolio-weighted minus costs
+  bull:
+    investment_return_annual: 0.07
+
+withdrawal:
+  rate_annual: 0.04
+  # Near-max single AHV (wage-indexed, ~today's CHF); needs a full 21→65 record.
+  ahv_annual_at_65: 30000.0

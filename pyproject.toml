@@ -1,0 +1,48 @@
+[project]
+name = "snowball"
+version = "0.2.0"
+description = "Snowball: long-term planning toolkit with pillars 2/3a, FX and withdrawal analysis"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "plotly>=5.24",
+    "pyyaml>=6.0",
+    "rich>=13.9",
+    "streamlit>=1.38",
+    "openpyxl>=3.1", # pandas ExcelWriter engine for --export-xlsx
+    "pydantic>=2.13.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[project.scripts]
+snowball = "snowball.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
